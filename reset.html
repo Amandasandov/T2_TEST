@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Reset SW</title></head>
+  <body>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for (let registration of registrations) {
+            registration.unregister().then(() => location.reload());
+          }
+        });
+        caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+      }
+    </script>
+    <p>Service Worker desregistrado. Recargando…</p>
+  </body>
+</html>
